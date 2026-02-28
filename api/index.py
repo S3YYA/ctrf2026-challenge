@@ -8,7 +8,7 @@ def index():
     
     # Vulnerability: Trusting client-controlled plain-text cookie
     if role == 'admin':
-        return render_template('index.html', theme='dark', flag='EHAX{cl13nt_byp4ss_4nd_c00k13_f0rg3ry}')
+        return render_template('index.html', theme='dark', flag='Without making any sound, get up and head to AB4-404')
     
     return render_template('index.html', theme='light')
 
