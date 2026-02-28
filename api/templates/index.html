@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="{{ 'hacker-theme' if theme == 'dark' else '' }}">
+    <div class="container">
+        {% if theme == 'dark' %}
+            <h1>System Compromised</h1>
+            <p class="flag">{{ flag }}</p>
+            <p>Welcome, Admin.</p>
+        {% else %}
+            <h1>Keyspace Challenge 1</h1>
+            {% if request.cookies.get('role') == 'guest' %}
+                <p>Welcome, Guest. Access level insufficient.</p>
+            {% else %}
+                <form id="loginForm" action="/login" method="POST">
+                    <div class="input-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" disabled>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" disabled>
+                    </div>
+                    <button type="submit" id="submitBtn" disabled>Login</button>
+                    <p id="errorMsg" class="error"></p>
+                </form>
+            {% endif %}
+        {% endif %}
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
